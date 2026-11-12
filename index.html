@@ -5,117 +5,145 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Ini-abasi Etim dev-resume</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title>Ini-abasi Etim · Backend Software Developer</title>
+  <meta content="Ini-abasi Etim is a backend software developer building REST APIs and web applications with Python, Django, Django REST Framework and FastAPI." name="description">
+  <meta content="backend software developer, python developer, REST API, Django, FastAPI, Flask" name="keywords">
+  <meta name="theme-color" content="#05070a">
 
   <!-- Favicons -->
   <link href="assets/img/lg.png" rel="icon">
   <link href="assets/img/lg.png" rel="apple-touch-icon">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-  <!-- Template Main CSS File -->
+  <!-- Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- Without JavaScript, show everything immediately -->
+  <noscript>
+    <style>
+      #preloader { display: none; }
+      .site-nav--intro, .hero-bg, .hero-reveal > *, .mask > span, .scroll-cue { animation: none !important; opacity: 1 !important; }
+      .mask > span, .hero-reveal > * { transform: none !important; filter: none !important; }
+      [data-aos] { opacity: 1 !important; transform: none !important; filter: none !important; }
+    </style>
+  </noscript>
 </head>
 
 <body>
 
-  <button class="btn btn-sm text-white mobile-nav-toggle d-xl-none">
-    <i class="bi bi-list"></i>
-  </button>
-  <!-- ======= Header ======= -->
-  <header id="header" class="d-flex flex-column justify-content-center">
+  <!-- ======= Navigation ======= -->
+  <header id="header" class="site-nav site-nav--intro">
+    <div class="site-nav__inner">
+      <a href="#hero" class="brand scrollto"><span class="brand-mark" aria-hidden="true"></span>Ini-abasi Etim</a>
 
-    <nav id="navbar" class="navbar nav-menu">
-      <ul>
-        <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
-        <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-        <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
-        <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
-      </ul>
-    </nav><!-- .nav-menu -->
+      <nav id="navbar" class="nav-menu" aria-label="Primary">
+        <ul>
+          <li><a href="#about" class="scrollto">About</a></li>
+          <li><a href="#skills" class="scrollto">Skills</a></li>
+          <li><a href="#portfolio" class="scrollto">Work</a></li>
+          <li><a href="#contact" class="scrollto">Contact</a></li>
+        </ul>
+      </nav>
 
-
-  </header><!-- End Header -->
+      <div class="site-nav__actions">
+        <a href="assets/presentations/Ini-abasi Etim CV.pdf" class="btn-mist btn-compact d-none d-sm-inline-flex" download>Download CV</a>
+        <button class="mobile-nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navbar">
+          <i class="bi bi-list"></i>
+        </button>
+      </div>
+    </div>
+  </header><!-- End Navigation -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex flex-column justify-content-center">
-    <div class="container" data-aos="zoom-in" data-aos-delay="100">
-      <h1 class="text-white display-1">Ini-abasi Etim</h1>
-      <p class="text-white">I'm a <span class="typed text-warning" data-typed-items="Backend web developer, python developer, REST API developer"></span></p>
-      <div class="social-links">
-        <a href="https://twitter.com/devInietim" class="twitter text-white"><i class="bx bxl-twitter"></i></a>
-        <a href="https://www.facebook.com/iniabasi.etim.90/" class="facebook text-white"><i class="bx bxl-facebook"></i></a>
-        <a href="https://www.linkedin.com/in/ini-abasi-etim/" class="linkedin text-white"><i class="bx bxl-linkedin"></i></a>
+  <section id="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-glow hero-glow--a" aria-hidden="true"></div>
+    <div class="hero-glow hero-glow--b" aria-hidden="true"></div>
+    <div class="container hero-content hero-reveal">
+      <span class="eyebrow">Uyo, Nigeria · Open to work</span>
+      <h1><span class="mask"><span>Ini-abasi Etim</span></span></h1>
+      <p class="hero-title">Backend Software Developer</p>
+      <p class="hero-intro">Python developer building REST APIs and web applications with Django, Django REST Framework and FastAPI.</p>
+      <div class="hero-actions">
+        <a href="assets/presentations/Ini-abasi Etim CV.pdf" class="btn-mist" download><i class="bi bi-download"></i> Download CV</a>
+        <a href="#portfolio" class="btn-ghost scrollto">View work <i class="bi bi-arrow-right"></i></a>
       </div>
-      <a href="assets/presentations/Ini-abasi Etim CV.pdf" class="btn btn-lg btn-primary mt-2" style="border-radius: 25px;" download>Download CV</a>
+      <div class="social-links">
+        <a href="https://twitter.com/devInietim" class="icon-circle" aria-label="Twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="https://www.facebook.com/iniabasi.etim.90/" class="icon-circle" aria-label="Facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="https://www.linkedin.com/in/ini-abasi-etim/" class="icon-circle" aria-label="LinkedIn"><i class="bx bxl-linkedin"></i></a>
+      </div>
     </div>
+    <a href="#about" class="scroll-cue scrollto" aria-label="Scroll to About"><span>Scroll</span><i class="scroll-line"></i></a>
   </section><!-- End Hero -->
 
   <main id="main">
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
-      <div class="container" data-aos="fade-up">
+      <div class="container">
 
-        <div class="section-title">
-          <h2>About me</h2>
+        <div class="section-title" data-aos="fade-up">
+          <span class="eyebrow">01 / About</span>
+          <h2>The power to imagine and create.</h2>
           <p class="lead">I believe that the greatest ability of mankind is the power to <b>imagine</b> and <b>create</b>. As a developer, I am passionate about imagining and building solutions through the use of technology. My concern is to replicate my imaginations into solutions.</p>
         </div>
 
-        <div class="row">
-          <div class="col-lg-4">
-            <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
+        <div class="row g-5 align-items-start">
+          <div class="col-lg-4" data-aos="fade-up">
+            <div class="photo-frame key-card">
+              <img src="assets/img/profile-img.jpg" alt="Portrait of Ini-abasi Etim" width="501" height="600" loading="lazy" decoding="async">
+            </div>
           </div>
-          <div class="col-lg-8 pt-3 pt-lg-0 content">
-            <h3>Python developer &amp; Backend Web Developer.</h3>
-            <p class="fst-italic">
+          <div class="col-lg-8 content" data-aos="fade-up" data-aos-delay="100">
+            <h3>Backend Software Developer</h3>
+            <p>
               My journey as a developer started with a desire to be able to build solutions of value. This has kept my lamp and drive burning. My concern is that I can build solutions to problems and work perfectly in teams.
             </p>
-            <div class="row">
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> 
-                    <strong>Fullname:</strong> <span>Ini-abasi Sebastian Etim</span>
-                  </li>
 
-                  <li><i class="bi bi-chevron-right"></i> 
-                    <strong >Website:</strong> 
-                    <a href="https://initech-step.github.io/">
-                      <span>initech-step.github.io</span>
-                    </a>
-                  </li>
-
-                  <li><i class="bi bi-chevron-right"></i> 
-                    <strong>Phone:</strong> <span>+234 70156 14787</span>
-                  </li>
-
-                  <li><i class="bi bi-chevron-right"></i> 
-                    <strong>City:</strong> <span>Uyo, Nigeria</span>
-                  </li>
-                </ul>
+            <dl class="details">
+              <div class="detail">
+                <dt>Full name</dt>
+                <dd>Ini-abasi Sebastian Etim</dd>
               </div>
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>ini.abasidev@gmail.com</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Internship/Entry level job:</strong> <span>Available</span></li>
-
-                  <li><i class="bi bi-chevron-right"></i> <strong>Certification:</strong> <span>Alx-T fullstack developer, Udacity.</span></li>
-                </ul>
+              <div class="detail">
+                <dt>Email</dt>
+                <dd><a href="mailto:ini.abasidev@gmail.com">ini.abasidev@gmail.com</a></dd>
               </div>
-            </div>
+              <div class="detail">
+                <dt>Website</dt>
+                <dd><a href="https://initech-step.github.io/">initech-step.github.io</a></dd>
+              </div>
+              <div class="detail">
+                <dt>Internship / Entry level</dt>
+                <dd><span class="badge-accent">Available</span></dd>
+              </div>
+              <div class="detail">
+                <dt>Phone</dt>
+                <dd><a href="tel:+2347015614787">+234 70156 14787</a></dd>
+              </div>
+              <div class="detail">
+                <dt>Certification</dt>
+                <dd>ALX-T Fullstack Developer, Udacity</dd>
+              </div>
+              <div class="detail">
+                <dt>City</dt>
+                <dd>Uyo, Nigeria</dd>
+              </div>
+            </dl>
+
             <p>
-              I am an undergraduate of University of Uyo, Uyo. I have interests in finance and technology and ways technology can be used to build solutions. 
+              I am an undergraduate of University of Uyo, Uyo. I have interests in finance and technology and ways technology can be used to build solutions.
             </p>
           </div>
         </div>
@@ -123,212 +151,189 @@
       </div>
     </section><!-- End About Section -->
 
-
     <!-- ======= Skills Section ======= -->
-    <section id="skills" class="skills section-bg">
-      <div class="container" data-aos="fade-up">
+    <section id="skills" class="skills">
+      <div class="container">
 
-        <div class="section-title">
-          <h2>Skills</h2>
-          <p class="lead">I believe in consistency and discipline as key factors for success. Every day of my life, I learn new skills and develop my strengths. I am always open to learning something new.<p>
+        <div class="section-title" data-aos="fade-up">
+          <span class="eyebrow">02 / Skills</span>
+          <h2>Tools I build with.</h2>
+          <p class="lead">I believe in consistency and discipline as key factors for success. Every day of my life, I learn new skills and develop my strengths. I am always open to learning something new.</p>
         </div>
 
-        <div class="row">
-
-          <div class="col-lg-3">
-            <img src="assets/img/skills/python.jpg">
+        <div class="row g-3">
+          <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+            <div class="skill-tile key-card">
+              <span class="icon-circle icon-circle--lg"><i class="bx bxl-python"></i></span>
+              <div><p class="skill-name">Python</p><p class="skill-cat">Language</p></div>
+            </div>
           </div>
-
-          <div class="col-lg-3">
-              <img src="assets/img/skills/django.jpg">
+          <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="80">
+            <div class="skill-tile key-card">
+              <span class="icon-circle icon-circle--lg"><i class="bx bxl-django"></i></span>
+              <div><p class="skill-name">Django</p><p class="skill-cat">Framework</p></div>
+            </div>
           </div>
-
-          <div class="col-lg-3">
-              <img src="assets/img/skills/drf.jpg">
+          <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="160">
+            <div class="skill-tile key-card">
+              <span class="icon-circle icon-circle--lg monogram">DRF</span>
+              <div><p class="skill-name">Django REST</p><p class="skill-cat">REST APIs</p></div>
+            </div>
           </div>
-
-          <div class="col-lg-3">
-              <img src="assets/img/skills/flask.jpg">
+          <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="240">
+            <div class="skill-tile key-card">
+              <span class="icon-circle icon-circle--lg"><i class="bx bxl-flask"></i></span>
+              <div><p class="skill-name">Flask</p><p class="skill-cat">Framework</p></div>
+            </div>
           </div>
-
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-3">
-              <img src="assets/img/skills/fast.jpg">
+          <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+            <div class="skill-tile key-card">
+              <span class="icon-circle icon-circle--lg monogram">FA</span>
+              <div><p class="skill-name">FastAPI</p><p class="skill-cat">REST APIs</p></div>
+            </div>
           </div>
-
-          <div class="col-lg-3">
-              <img src="assets/img/skills/celery.jpg">
+          <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="80">
+            <div class="skill-tile key-card">
+              <span class="icon-circle icon-circle--lg monogram">Ce</span>
+              <div><p class="skill-name">Celery</p><p class="skill-cat">Task queue</p></div>
+            </div>
           </div>
-
-          <div class="col-lg-3">
-              <img src="assets/img/skills/docker.jpg">
+          <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="160">
+            <div class="skill-tile key-card">
+              <span class="icon-circle icon-circle--lg"><i class="bx bxl-docker"></i></span>
+              <div><p class="skill-name">Docker</p><p class="skill-cat">Containers</p></div>
+            </div>
           </div>
-
-          <div class="col-lg-3">
-              <img src="assets/img/skills/github.jpg">
+          <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="240">
+            <div class="skill-tile key-card">
+              <span class="icon-circle icon-circle--lg"><i class="bx bxl-github"></i></span>
+              <div><p class="skill-name">GitHub</p><p class="skill-cat">Version control</p></div>
+            </div>
           </div>
-
-        </div>
-
-
-        <div class="row">
-
-          <div class="col-lg-3">
-              <img src="assets/img/skills/html.jpg">
+          <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+            <div class="skill-tile key-card">
+              <span class="icon-circle icon-circle--lg"><i class="bx bxl-html5"></i></span>
+              <div><p class="skill-name">HTML</p><p class="skill-cat">Markup</p></div>
+            </div>
           </div>
-
-          <div class="col-lg-3">
-              <img src="assets/img/skills/bootstrap.jpg">
+          <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="80">
+            <div class="skill-tile key-card">
+              <span class="icon-circle icon-circle--lg"><i class="bx bxl-bootstrap"></i></span>
+              <div><p class="skill-name">Bootstrap</p><p class="skill-cat">UI toolkit</p></div>
+            </div>
           </div>
-
-          <div class="col-lg-3">
-              <img src="assets/img/skills/js.jpg">
+          <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="160">
+            <div class="skill-tile key-card">
+              <span class="icon-circle icon-circle--lg"><i class="bx bxl-javascript"></i></span>
+              <div><p class="skill-name">JavaScript</p><p class="skill-cat">Language</p></div>
+            </div>
           </div>
         </div>
 
       </div>
     </section><!-- End Skills Section -->
 
-
-
     <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio section-bg">
-      <div class="container" data-aos="fade-up">
+    <section id="portfolio" class="portfolio">
+      <div class="container">
 
-        <div class="section-title">
-          <h2>Portfolio</h2>
+        <div class="section-title" data-aos="fade-up">
+          <span class="eyebrow">03 / Work</span>
+          <h2>Selected work.</h2>
           <p class="lead">Every project in this portfolio provides a solution to issues I encountered.
-          You can download the PDF presentation for each project to understand what the project is all about. For developers you can clone the github repository attached. <b>Docker images for each project will be ready soon.</b></p>
+          You can download the PDF presentation for each project to understand what the project is all about. For developers you can clone the GitHub repository attached. <b>Docker images for each project will be ready soon.</b></p>
         </div>
 
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3">
 
-          <div class="col">
-            <div class="card shadow-sm">
-              <img class="card-img-top" src="assets/img/b3logo.jpg"/>
-              <div class="card-body">
-                <p class="card-title"><b>Project name:</b> Bit-By-Bit</p>
-                <p class="card-text"><b>Project category:</b> Rest API</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <a type="button" class="btn btn-lg vbtn" href="proj1.html">View</a>
-                  </div>
-                </div>
+          <div class="col" data-aos="fade-up" data-aos-delay="0">
+            <a class="work-card key-card" href="proj1.html">
+              <div class="work-media"><img src="assets/img/b3logo.jpg" alt="Bit-By-Bit project" width="300" height="196" loading="lazy" decoding="async"></div>
+              <div class="work-body">
+                <span class="badge-mono align-self-start">REST API</span>
+                <h3 class="work-title">Bit-By-Bit</h3>
+                <span class="work-link">View project <i class="bi bi-arrow-up-right"></i></span>
               </div>
-            </div>
+            </a>
           </div>
 
-          <div class="col">
-            <div class="card shadow-sm">
-              <img class="card-img-top" src="assets/img/zuvote.jpg"/>
-              <div class="card-body">
-                <p class="card-title"><b>Project name:</b> Zuvote</p>
-                <p class="card-text"><b>Project category:</b> Web application</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <a type="button" class="btn btn-lg vbtn" href="zuvote.html">View</a>
-                  </div>
-                </div>
+          <div class="col" data-aos="fade-up" data-aos-delay="100">
+            <a class="work-card key-card" href="zuvote.html">
+              <div class="work-media"><img src="assets/img/zuvote.jpg" alt="Zuvote project" width="300" height="196" loading="lazy" decoding="async"></div>
+              <div class="work-body">
+                <span class="badge-mono align-self-start">Web application</span>
+                <h3 class="work-title">Zuvote</h3>
+                <span class="work-link">View project <i class="bi bi-arrow-up-right"></i></span>
               </div>
-            </div>
+            </a>
           </div>
 
-          <div class="col">
-            <div class="card shadow-sm">
-              <img class="card-img-top" src="assets/img/inventory.jpg"/>
-
-              <div class="card-body">
-                <p class="card-title"><b>Project name:</b> Inventory manager</p>
-                <p class="card-text"><b>Project category:</b> Web application</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <a type="button" class="btn btn-lg vbtn" href="inventory.html">View</a>
-                  </div>
-                </div>
+          <div class="col" data-aos="fade-up" data-aos-delay="200">
+            <a class="work-card key-card" href="inventory.html">
+              <div class="work-media"><img src="assets/img/inventory.jpg" alt="Inventory manager project" width="300" height="196" loading="lazy" decoding="async"></div>
+              <div class="work-body">
+                <span class="badge-mono align-self-start">Web application</span>
+                <h3 class="work-title">Inventory manager</h3>
+                <span class="work-link">View project <i class="bi bi-arrow-up-right"></i></span>
               </div>
-            </div>
+            </a>
           </div>
 
-          <div class="col">
-            <div class="card shadow-sm">
-              <img class="card-img-top" src="assets/img/mking2.jpg"/>
-
-              <div class="card-body">
-                <p class="card-title"><b>Project name:</b> Writing agency</p>
-                <p class="card-text"><b>Project category:</b> Web application</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <a type="button" class="btn btn-lg vbtn" href="ese.html">View</a>
-                  </div>
-                </div>
+          <div class="col" data-aos="fade-up" data-aos-delay="0">
+            <a class="work-card key-card" href="ese.html">
+              <div class="work-media"><img src="assets/img/mking2.jpg" alt="Writing agency project" width="300" height="196" loading="lazy" decoding="async"></div>
+              <div class="work-body">
+                <span class="badge-mono align-self-start">Web application</span>
+                <h3 class="work-title">Writing agency</h3>
+                <span class="work-link">View project <i class="bi bi-arrow-up-right"></i></span>
               </div>
-            </div>
+            </a>
           </div>
 
-          <div class="col">
-            <div class="card shadow-md">
-              <img class="card-img-top" src="assets/img/note.jpg"/>
-
-              <div class="card-body">
-                <p class="card-title"><b>Project name:</b> Note App</p>
-                <p class="card-text"><b>Project category:</b> REST API</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <a type="button" class="btn btn-lg vbtn" href="note.html">View</a>
-                  </div>
-                </div>
+          <div class="col" data-aos="fade-up" data-aos-delay="100">
+            <a class="work-card key-card" href="note.html">
+              <div class="work-media"><img src="assets/img/note.jpg" alt="Note App project" width="756" height="502" loading="lazy" decoding="async"></div>
+              <div class="work-body">
+                <span class="badge-mono align-self-start">REST API</span>
+                <h3 class="work-title">Note App</h3>
+                <span class="work-link">View project <i class="bi bi-arrow-up-right"></i></span>
               </div>
-            </div>
+            </a>
           </div>
+
         </div>
 
       </div>
     </section><!-- End Portfolio Section -->
 
-
-
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
-      <div class="container" data-aos="fade-up">
+      <div class="container">
 
-        <div class="section-title">
-          <h2>Contact</h2>
+        <div class="section-title" data-aos="fade-up">
+          <span class="eyebrow">04 / Contact</span>
+          <h2>Get in touch.</h2>
         </div>
 
-        <div class="row mt-1">
-
-          <div class="col-lg-4">
-            <div class="info">
-              <div class="address">
-                <i class="bi bi-geo-alt"></i>
-                <h4>Location:</h4>
-                <p>Uyo city, Nigeria</p>
-              </div>
-
-              <div class="email">
-                <i class="bi bi-envelope"></i>
-                <h4>Email: ini.abasidev@gmail.com</h4>
-                <p></p>
-              </div>
-
-              <div class="phone">
-                <i class="bi bi-phone"></i>
-                <h4>Call:</h4>
-                <p>+234 70156 14787</p>
-              </div>
-
+        <div class="row g-3">
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+            <div class="contact-card key-card">
+              <span class="icon-circle"><i class="bi bi-geo-alt"></i></span>
+              <div><span class="label">Location</span><span class="value">Uyo city, Nigeria</span></div>
             </div>
-
           </div>
-
-
-          <!---WHERE CONTACT FORM SHOULD ME-->
-          <div class="col-lg-8 mt-5 mt-lg-0">
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <a class="contact-card key-card" href="mailto:ini.abasidev@gmail.com">
+              <span class="icon-circle"><i class="bi bi-envelope"></i></span>
+              <div><span class="label">Email</span><span class="value">ini.abasidev@gmail.com</span></div>
+            </a>
           </div>
-
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <a class="contact-card key-card" href="tel:+2347015614787">
+              <span class="icon-circle"><i class="bi bi-telephone"></i></span>
+              <div><span class="label">Call</span><span class="value">+234 70156 14787</span></div>
+            </a>
+          </div>
         </div>
 
       </div>
@@ -336,41 +341,38 @@
 
   </main><!-- End #main -->
 
-
-
   <!-- ======= Footer ======= -->
   <footer id="footer">
     <div class="container">
-      <h3>Ini-abasi Etim</h3>
-      <p><b>"I have learnt more from discipline than motivation"</b>, I am available through any of the handles below.</p>
-      <div class="social-links">
-        <a href="https://twitter.com/devInietim" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="https://www.facebook.com/iniabasi.etim.90/" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="https://www.linkedin.com/in/ini-abasi-etim/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      <div class="footer-top">
+        <div>
+          <p class="footer-name">Ini-abasi Etim</p>
+          <p class="footer-quote">“I have learnt more from discipline than motivation.” I am available through any of the handles here.</p>
+        </div>
+        <div class="social-links">
+          <a href="https://twitter.com/devInietim" class="icon-circle" aria-label="Twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="https://www.facebook.com/iniabasi.etim.90/" class="icon-circle" aria-label="Facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="https://www.linkedin.com/in/ini-abasi-etim/" class="icon-circle" aria-label="LinkedIn"><i class="bx bxl-linkedin"></i></a>
+        </div>
       </div>
-
-      <div class="credits">
-        Template by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
+      <p class="meta-strip">
+        <span>© <span data-year>2026</span> Ini-abasi Etim</span>
+        <span class="sep" aria-hidden="true">|</span>
+        <span>Uyo, Nigeria</span>
+        <span class="sep" aria-hidden="true">|</span>
+        <span>Python · Django · FastAPI</span>
+      </p>
     </div>
   </footer><!-- End Footer -->
 
-
-
   <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#hero" class="back-to-top d-flex align-items-center justify-content-center" aria-label="Back to top"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
 
-  <!-- Template Main JS File -->
+  <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
 </body>

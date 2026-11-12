@@ -1,269 +1,215 @@
-/**
-* Template Name: MyResume - v4.8.1
-* Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-(function() {
+(function () {
   "use strict";
 
-  /**
-   * Easy selector helper function
-   */
   const select = (el, all = false) => {
-    el = el.trim()
-    if (all) {
-      return [...document.querySelectorAll(el)]
-    } else {
-      return document.querySelector(el)
+    el = el.trim();
+    return all ? [...document.querySelectorAll(el)] : document.querySelector(el);
+  };
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const header = select("#header");
+  const body = document.body;
+
+  /**
+   * Glass nav: become more solid once the page scrolls
+   */
+  const toggleScrolled = () => {
+    const scrolled = window.scrollY > 24;
+    if (header) header.classList.toggle("scrolled", scrolled);
+    body.classList.toggle("has-scrolled", scrolled);
+  };
+
+  /**
+   * Hero parallax: desktop pointers only, never with reduced motion
+   */
+  const heroBg = select(".hero-bg");
+  const parallaxQuery = window.matchMedia("(hover: hover) and (min-width: 992px)");
+  let parallaxTicking = false;
+  const updateParallax = () => {
+    parallaxTicking = false;
+    if (!heroBg) return;
+    if (reduceMotion || !parallaxQuery.matches) {
+      heroBg.style.translate = "";
+      return;
     }
-  }
-
-  /**
-   * Easy event listener function
-   */
-  const on = (type, el, listener, all = false) => {
-    let selectEl = select(el, all)
-    if (selectEl) {
-      if (all) {
-        selectEl.forEach(e => e.addEventListener(type, listener))
-      } else {
-        selectEl.addEventListener(type, listener)
-      }
+    const y = window.scrollY;
+    if (y > window.innerHeight * 1.2) return;
+    heroBg.style.translate = "0 " + (y * 0.25).toFixed(1) + "px";
+  };
+  const requestParallax = () => {
+    if (!parallaxTicking) {
+      parallaxTicking = true;
+      window.requestAnimationFrame(updateParallax);
     }
-  }
+  };
 
   /**
-   * Easy on scroll event listener 
+   * Active nav link follows the section in view
    */
-  const onscroll = (el, listener) => {
-    el.addEventListener('scroll', listener)
-  }
-
-  /**
-   * Navbar links active state on scroll
-   */
-  let navbarlinks = select('#navbar .scrollto', true)
+  const navbarlinks = select("#navbar .scrollto", true);
   const navbarlinksActive = () => {
-    let position = window.scrollY + 200
-    navbarlinks.forEach(navbarlink => {
-      if (!navbarlink.hash) return
-      let section = select(navbarlink.hash)
-      if (!section) return
-      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        navbarlink.classList.add('active')
-      } else {
-        navbarlink.classList.remove('active')
-      }
-    })
-  }
-  window.addEventListener('load', navbarlinksActive)
-  onscroll(document, navbarlinksActive)
-
-  /**
-   * Scrolls to an element with header offset
-   */
-  const scrollto = (el) => {
-    let elementPos = select(el).offsetTop
-    window.scrollTo({
-      top: elementPos,
-      behavior: 'smooth'
-    })
-  }
+    const position = window.scrollY + 200;
+    navbarlinks.forEach((link) => {
+      if (!link.hash) return;
+      const section = select(link.hash);
+      if (!section) return;
+      const inView = position >= section.offsetTop && position <= section.offsetTop + section.offsetHeight;
+      link.classList.toggle("active", inView);
+    });
+  };
 
   /**
    * Back to top button
    */
-  let backtotop = select('.back-to-top')
-  if (backtotop) {
-    const toggleBacktotop = () => {
-      if (window.scrollY > 100) {
-        backtotop.classList.add('active')
-      } else {
-        backtotop.classList.remove('active')
-      }
+  const backtotop = select(".back-to-top");
+  const toggleBacktotop = () => {
+    if (backtotop) backtotop.classList.toggle("active", window.scrollY > 100);
+  };
+
+  const onScroll = () => {
+    toggleScrolled();
+    navbarlinksActive();
+    toggleBacktotop();
+    requestParallax();
+  };
+  window.addEventListener("load", onScroll);
+  onScroll();
+  document.addEventListener("scroll", onScroll, { passive: true });
+
+  /**
+   * Smooth scroll that accounts for the fixed nav
+   */
+  const scrollto = (hash) => {
+    const target = select(hash);
+    if (!target) return;
+    const offset = header ? header.offsetHeight + 24 : 0;
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: Math.max(top, 0), behavior: reduceMotion ? "auto" : "smooth" });
+  };
+
+  /**
+   * Mobile nav
+   */
+  const toggle = select(".mobile-nav-toggle");
+  const setMobileNav = (open) => {
+    body.classList.toggle("mobile-nav-active", open);
+    if (!toggle) return;
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    const icon = toggle.querySelector("i");
+    if (icon) {
+      icon.classList.toggle("bi-list", !open);
+      icon.classList.toggle("bi-x", open);
     }
-    window.addEventListener('load', toggleBacktotop)
-    onscroll(document, toggleBacktotop)
+  };
+
+  if (toggle) {
+    toggle.addEventListener("click", () => setMobileNav(!body.classList.contains("mobile-nav-active")));
   }
 
-  /**
-   * Mobile nav toggle
-   */
-  on('click', '.mobile-nav-toggle', function(e) {
-    select('body').classList.toggle('mobile-nav-active')
-    this.classList.toggle('bi-list')
-    this.classList.toggle('bi-x')
-  })
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setMobileNav(false);
+  });
 
-  /**
-   * Scrool with ofset on links with a class name .scrollto
-   */
-  on('click', '.scrollto', function(e) {
-    if (select(this.hash)) {
-      e.preventDefault()
-
-      let body = select('body')
-      if (body.classList.contains('mobile-nav-active')) {
-        body.classList.remove('mobile-nav-active')
-        let navbarToggle = select('.mobile-nav-toggle')
-        navbarToggle.classList.toggle('bi-list')
-        navbarToggle.classList.toggle('bi-x')
-      }
-      scrollto(this.hash)
-    }
-  }, true)
-
-  /**
-   * Scroll with ofset on page load with hash links in the url
-   */
-  window.addEventListener('load', () => {
-    if (window.location.hash) {
-      if (select(window.location.hash)) {
-        scrollto(window.location.hash)
-      }
+  // Tap outside the open menu closes it
+  document.addEventListener("click", (e) => {
+    if (body.classList.contains("mobile-nav-active") && header && !header.contains(e.target)) {
+      setMobileNav(false);
     }
   });
 
-  /**
-   * Preloader
-   */
-  let preloader = select('#preloader');
-  if (preloader) {
-    window.addEventListener('load', () => {
-      preloader.remove()
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 992) setMobileNav(false);
+    requestParallax();
+  });
+
+  select(".scrollto, .back-to-top", true).forEach((link) => {
+    link.addEventListener("click", (e) => {
+      if (!link.hash || !select(link.hash)) return;
+      e.preventDefault();
+      setMobileNav(false);
+      scrollto(link.hash);
     });
-  }
+  });
 
   /**
-   * Hero type effect
+   * Scroll with offset on page load with hash links in the url
    */
-  const typed = select('.typed')
-  if (typed) {
-    let typed_strings = typed.getAttribute('data-typed-items')
-    typed_strings = typed_strings.split(',')
-    new Typed('.typed', {
-      strings: typed_strings,
-      loop: true,
-      typeSpeed: 100,
-      backSpeed: 50,
-      backDelay: 2000
-    });
-  }
+  window.addEventListener("load", () => {
+    if (window.location.hash && select(window.location.hash)) {
+      scrollto(window.location.hash);
+    }
+  });
 
   /**
-   * Skills animation
+   * Preloader fades out first; only then does the hero entrance play,
+   * so the motion is never hidden behind the loader.
    */
-  let skilsContent = select('.skills-content');
-  if (skilsContent) {
-    new Waypoint({
-      element: skilsContent,
-      offset: '80%',
-      handler: function(direction) {
-        let progress = select('.progress .progress-bar', true);
-        progress.forEach((el) => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%'
-        });
+  const preloader = select("#preloader");
+  let revealed = false;
+  const reveal = () => {
+    if (revealed) return;
+    revealed = true;
+    let started = false;
+    const start = () => {
+      if (started) return;
+      started = true;
+      if (preloader) preloader.remove();
+      body.classList.add("is-ready");
+    };
+    if (preloader) {
+      preloader.addEventListener("transitionend", start, { once: true });
+      preloader.classList.add("loaded");
+      setTimeout(start, 700);
+    } else {
+      start();
+    }
+  };
+
+  // Don't wait for window "load" (it waits on every third-party request).
+  // Start once fonts and the hero photo are ready, capped so a slow network
+  // never leaves the visitor staring at the loader.
+  const whenAssetsReady = () => {
+    const waits = [];
+    if (document.fonts && document.fonts.ready) waits.push(document.fonts.ready);
+    if (heroBg) {
+      const match = /url\(["']?(.*?)["']?\)/.exec(getComputedStyle(heroBg).backgroundImage);
+      if (match) {
+        const img = new Image();
+        img.src = match[1];
+        waits.push(img.decode ? img.decode().catch(() => {}) : Promise.resolve());
       }
-    })
+    }
+    const cap = new Promise((resolve) => setTimeout(resolve, 1800));
+    Promise.race([Promise.all(waits), cap]).then(reveal, reveal);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", whenAssetsReady);
+  } else {
+    whenAssetsReady();
   }
+  window.addEventListener("load", reveal);
 
   /**
-   * Porfolio isotope and filter
+   * Footer year
    */
-  window.addEventListener('load', () => {
-    let portfolioContainer = select('.portfolio-container');
-    if (portfolioContainer) {
-      let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: '.portfolio-item'
-      });
-
-      let portfolioFilters = select('#portfolio-flters li', true);
-
-      on('click', '#portfolio-flters li', function(e) {
-        e.preventDefault();
-        portfolioFilters.forEach(function(el) {
-          el.classList.remove('filter-active');
-        });
-        this.classList.add('filter-active');
-
-        portfolioIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-        portfolioIsotope.on('arrangeComplete', function() {
-          AOS.refresh()
-        });
-      }, true);
-    }
-
-  });
-
-  /**
-   * Initiate portfolio lightbox 
-   */
-  const portfolioLightbox = GLightbox({
-    selector: '.portfolio-lightbox'
-  });
-
-  /**
-   * Initiate portfolio details lightbox 
-   */
-  const portfolioDetailsLightbox = GLightbox({
-    selector: '.portfolio-details-lightbox',
-    width: '90%',
-    height: '90vh'
-  });
-
-  /**
-   * Portfolio details slider
-   */
-  new Swiper('.portfolio-details-slider', {
-    speed: 400,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    }
-  });
-
-  /**
-   * Testimonials slider
-   */
-  new Swiper('.testimonials-slider', {
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    }
+  select("[data-year]", true).forEach((el) => {
+    el.textContent = new Date().getFullYear();
   });
 
   /**
    * Animation on scroll
    */
-  window.addEventListener('load', () => {
+  // Reduced motion keeps AOS on; CSS strips the movement so only the fade remains.
+  if (typeof AOS !== "undefined") {
     AOS.init({
-      duration: 1000,
-      easing: 'ease-in-out',
+      duration: 1200,
+      easing: "ease-out-cubic",
       once: true,
-      mirror: false
-    })
-  });
-
-  /**
-   * Initiate Pure Counter 
-   */
-  new PureCounter();
-
-})()
+      mirror: false,
+      offset: 60
+    });
+    window.addEventListener("load", () => AOS.refresh());
+  }
+})();

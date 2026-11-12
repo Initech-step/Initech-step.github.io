@@ -3,85 +3,45 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <title>Inventory Project</title>
-    <!-- CSS only -->
-<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .b-example-divider {
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
-
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
-
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-    </style>
-
-    
+    <meta name="description" content="Inventory manager: a web application for managing stock with LIFO and FIFO methods. A project by Ini-abasi Etim.">
+    <meta name="theme-color" content="#05070a">
+    <title>Inventory manager · Ini-abasi Etim</title>
+    <link href="assets/img/lg.png" rel="icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
   </head>
-  <body>
-    
-<main>
-  <div class="container py-4">
+  <body class="project-page">
 
-    <div class="p-4 mb-4 bg-light rounded-3">
-      <div class="container-fluid py-4">
-        <h4 class="display-6 fw-bold">Inventory manager</h4>
-        <p class="col-md-10 lead">The concern of this project is to build inventory management software. This application will help managers manage their stock or inventory using methods like Last In First Out(LIFO) and First In First Out(FIFO). 
-        It can also help managers make calculations about the stock levels.
-        The structure of this software is inspired by the Cost Accounting textbook written by Adeniji .A. Adeniji.</p>
-        <a class="btn btn-dark btn-lg" href="https://github.com/Initech-step/Mini-inventory">Github</a>
-        <a class="btn btn-warning btn-lg" href="assets/presentations/Mini-inventory management software.pdf" download>Download presentation.pdf</a>
+    <header class="site-nav scrolled">
+      <div class="site-nav__inner">
+        <a href="index.html" class="brand"><span class="brand-mark" aria-hidden="true"></span>Ini-abasi Etim</a>
+        <div class="site-nav__actions">
+          <a href="index.html#portfolio" class="btn-ghost btn-compact"><i class="bi bi-arrow-left"></i> Back<span class="hide-xs">&nbsp;to portfolio</span></a>
+        </div>
       </div>
-    </div>
-  </div>
-</main>
+    </header>
 
+    <main>
+      <div class="container">
+        <article class="project-panel key-card">
+          <span class="badge-mono">Web application</span>
+          <h1>Inventory manager</h1>
 
-    
+          <p class="lead">The concern of this project is to build inventory management software. This application will help managers manage their stock or inventory using methods like Last In First Out (LIFO) and First In First Out (FIFO).
+          It can also help managers make calculations about the stock levels.
+          The structure of this software is inspired by the Cost Accounting textbook written by Adeniji .A. Adeniji.</p>
+
+          <div class="project-actions">
+            <a class="btn-mist" href="assets/presentations/Mini-inventory management software.pdf" download><i class="bi bi-download"></i> Download presentation</a>
+            <a class="btn-ghost" href="https://github.com/Initech-step/Mini-inventory"><i class="bi bi-github"></i> View on GitHub</a>
+          </div>
+        </article>
+      </div>
+    </main>
+
   </body>
 </html>
