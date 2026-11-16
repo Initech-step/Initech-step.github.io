@@ -55,20 +55,28 @@
   function split(el, mode, seed) {
     if (!el || el.__split) return el && el.__split;
     var text = el.textContent.replace(/\s+/g, " ").trim();
+    /* remember which words sat inside an accent span (.hl), so the pieces keep their colour */
+    var flags = [];
+    [].forEach.call(el.childNodes, function (n) {
+      var hl = n.nodeType === 1 && n.classList.contains("hl");
+      n.textContent.split(/\s+/).forEach(function (w) { if (w) flags.push(hl); });
+    });
     var r = rng(seed || 7);
     el.textContent = "";
     var sr = document.createElement("span"); sr.className = "sr-only"; sr.textContent = text;
     var vis = document.createElement("span"); vis.setAttribute("aria-hidden", "true"); vis.className = "split";
     var words = text.split(" ");
+    if (flags.length !== words.length) flags = [];
+    var allHl = function (a, b) { for (var i = a; i < b; i++) if (!flags[i]) return false; return a < b; };
     var out = { words: [], chars: [] };
     if (mode === "halves") {
       var mid = Math.ceil(words.length / 2);
-      var a = document.createElement("span"); a.className = "half-a"; a.textContent = words.slice(0, mid).join(" ") + " ";
-      var b = document.createElement("span"); b.className = "half-b"; b.textContent = words.slice(mid).join(" ");
+      var a = document.createElement("span"); a.className = "half-a" + (allHl(0, mid) ? " hl" : ""); a.textContent = words.slice(0, mid).join(" ") + " ";
+      var b = document.createElement("span"); b.className = "half-b" + (allHl(mid, words.length) ? " hl" : ""); b.textContent = words.slice(mid).join(" ");
       vis.appendChild(a); vis.appendChild(b);
     } else {
       words.forEach(function (w, i) {
-        var ws = document.createElement("span"); ws.className = "w";
+        var ws = document.createElement("span"); ws.className = "w" + (flags[i] ? " hl" : "");
         if (mode === "chars") {
           for (var j = 0; j < w.length; j++) {
             var cs = document.createElement("span"); cs.className = "c"; cs.textContent = w[j];

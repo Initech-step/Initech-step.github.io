@@ -35,11 +35,9 @@
       var on = !!window.matchMedia;
       for (var i = 0; on && i < G.length; i++) { if (matchMedia(G[i]).matches) on = false; }
       if (on) d.classList.add('scrub');
-      try { if (localStorage.getItem('portrait-mode') === 'stand') d.classList.add('mode-stand'); } catch (e) {}
     })();
   </script>
   <script src="assets/js/engine.js" defer></script>
-  <script src="assets/js/stars.js" defer></script>
   <script src="assets/js/hero.js" defer></script>
   <script src="assets/js/route.js" defer></script>
   <script src="assets/js/scenes.js" defer></script>
@@ -48,17 +46,8 @@
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- the one fixed environment layer: the same sky, behind the whole page -->
-  <div class="env" aria-hidden="true">
-    <picture>
-      <source type="image/avif" srcset="assets/img/space/env-1600.avif">
-      <source type="image/webp" srcset="assets/img/space/env-1600.webp">
-      <img src="assets/img/space/env-1600.jpg" alt="" decoding="async" loading="lazy">
-    </picture>
-    <div class="env-stars env-stars--a"></div>
-    <div class="env-stars env-stars--b"></div>
-    <div class="env-scrim"></div>
-  </div>
+  <!-- the one fixed environment layer: navy and a quiet grid, behind the whole page -->
+  <div class="env" aria-hidden="true"></div>
 
   <header class="nav" id="top">
     <a class="mark" href="#main" aria-label="INIT, back to the top">
@@ -74,7 +63,7 @@
         <li><a href="#projects">Projects</a></li>
       </ul>
     </nav>
-    <a class="btn btn-accent btn-sm" href="#contact">Start a conversation</a>
+    <a class="btn btn-accent btn-sm" href="#contact"><span class="lbl-long">Start a conversation</span><span class="lbl-short">Contact</span></a>
   </header>
 
   <main id="main" tabindex="-1">
@@ -82,74 +71,16 @@
     <!-- ===================== WORLD: hero + organizations share one pinned stage ===================== -->
     <section class="world" id="world" aria-label="Introduction">
       <div class="stage world-stage">
-        <h1 class="sr-only">Ini-abasi Etim, backend developer and accountant by training</h1>
-
         <div class="hero-frame">
-          <div class="layer far" aria-hidden="true">
-            <picture>
-              <source media="(orientation: portrait) and (max-width: 1024px), (orientation: portrait) and (pointer: coarse)" type="image/avif" srcset="assets/img/space/phone-1080.avif">
-              <source media="(orientation: portrait) and (max-width: 1024px), (orientation: portrait) and (pointer: coarse)" type="image/webp" srcset="assets/img/space/phone-1080.webp">
-              <source type="image/avif" srcset="assets/img/space/far-1600.avif 1600w, assets/img/space/far-2560.avif 2560w" sizes="100vw">
-              <source type="image/webp" srcset="assets/img/space/far-1600.webp 1600w, assets/img/space/far-2560.webp 2560w" sizes="100vw">
-              <img src="assets/img/space/far-1600.jpg" alt="" decoding="async" fetchpriority="high">
-            </picture>
-          </div>
-          <canvas class="stars" aria-hidden="true"></canvas>
-          <div class="layer mid" aria-hidden="true">
-            <picture>
-              <source type="image/avif" srcset="assets/img/space/mid-1600.avif 1600w, assets/img/space/mid-2560.avif 2560w" sizes="100vw">
-              <img src="assets/img/space/mid-1600.webp" alt="" decoding="async" loading="lazy">
-            </picture>
-          </div>
-
-          <!-- the signature: the name in frosted glass, the portrait inside it -->
-          <svg class="glass" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-            <defs>
-              <clipPath id="clipL"><path class="nm" transform="translate(11.2 179.4) scale(.2073)" d="M86 1968V368H345V1968Z M541 1968V368H923L1036 877L1152 1740H1202L1155 1024L1134 368H1384V1968H984L869 1432L779 594H725L769 1358L791 1968Z M1581 1968V368H1840V1968Z M2010 1359V1131H2717V1359Z M2827 1968 3036 368H3452L3661 1968H3396L3360 1601H3128L3092 1968ZM3152 1373H3336L3301 1021L3272 596H3216L3187 1021Z"/></clipPath>
-              <clipPath id="clipR"><path class="nm" transform="translate(11.2 179.4) scale(.2073)" d="M3797 1968V368H4134Q4336 368 4429 451Q4522 534 4523 725Q4523 771 4523 809.5Q4523 848 4521 885Q4515 987 4476.5 1047.5Q4438 1108 4356 1135V1181Q4441 1208 4480 1269Q4519 1330 4523 1436Q4525 1483 4525 1523Q4525 1563 4523 1611Q4515 1801 4426 1884.5Q4337 1968 4135 1968ZM4056 1740H4135Q4198 1740 4231.5 1706.5Q4265 1673 4265 1608Q4266 1566 4266 1527.5Q4266 1489 4265 1448Q4265 1351 4233.5 1310.5Q4202 1270 4133 1270H4056ZM4056 1042H4134Q4198 1042 4231 1000Q4264 958 4265 878Q4265 835 4265 794.5Q4265 754 4265 712Q4264 655 4231 625.5Q4198 596 4134 596H4056Z M4617 1968 4826 368H5242L5451 1968H5186L5150 1601H4918L4882 1968ZM4942 1373H5126L5091 1021L5062 596H5006L4977 1021Z M5943 1986Q5744 1986 5659 1901Q5574 1816 5565 1619Q5564 1580 5564 1538Q5564 1496 5566 1454.5Q5568 1413 5572 1373H5815Q5811 1450 5810.5 1525.5Q5810 1601 5815 1666Q5820 1720 5850.5 1747.5Q5881 1775 5943 1775Q6004 1775 6032 1747.5Q6060 1720 6065 1666Q6069 1626 6070.5 1590Q6072 1554 6070.5 1517Q6069 1480 6065 1439Q6062 1389 6040.5 1351Q6019 1313 5969 1300L5820 1262Q5723 1237 5667 1189.5Q5611 1142 5586.5 1070Q5562 998 5559 900Q5558 851 5558 805.5Q5558 760 5559 715Q5564 584 5602.5 503.5Q5641 423 5723.5 386.5Q5806 350 5943 350Q6136 350 6222.5 434.5Q6309 519 6317 715Q6319 761 6318 828Q6317 895 6314 957H6066Q6069 885 6070 812.5Q6071 740 6068 668Q6066 615 6033.5 588Q6001 561 5943 561Q5881 561 5852 588Q5823 615 5817 668Q5812 726 5812 784Q5812 842 5817 900Q5822 952 5843.5 988Q5865 1024 5919 1037L6050 1068Q6153 1093 6212 1142.5Q6271 1192 6296.5 1266Q6322 1340 6325 1439Q6326 1472 6326 1501.5Q6326 1531 6325.5 1559.5Q6325 1588 6323 1619Q6315 1816 6229.5 1901Q6144 1986 5943 1986Z M6493 1968V368H6752V1968Z"/></clipPath>
-              <path id="pathL" class="nm" transform="translate(11.2 179.4) scale(.2073)" d="M86 1968V368H345V1968Z M541 1968V368H923L1036 877L1152 1740H1202L1155 1024L1134 368H1384V1968H984L869 1432L779 594H725L769 1358L791 1968Z M1581 1968V368H1840V1968Z M2010 1359V1131H2717V1359Z M2827 1968 3036 368H3452L3661 1968H3396L3360 1601H3128L3092 1968ZM3152 1373H3336L3301 1021L3272 596H3216L3187 1021Z"/>
-              <path id="pathR" class="nm" transform="translate(11.2 179.4) scale(.2073)" d="M3797 1968V368H4134Q4336 368 4429 451Q4522 534 4523 725Q4523 771 4523 809.5Q4523 848 4521 885Q4515 987 4476.5 1047.5Q4438 1108 4356 1135V1181Q4441 1208 4480 1269Q4519 1330 4523 1436Q4525 1483 4525 1523Q4525 1563 4523 1611Q4515 1801 4426 1884.5Q4337 1968 4135 1968ZM4056 1740H4135Q4198 1740 4231.5 1706.5Q4265 1673 4265 1608Q4266 1566 4266 1527.5Q4266 1489 4265 1448Q4265 1351 4233.5 1310.5Q4202 1270 4133 1270H4056ZM4056 1042H4134Q4198 1042 4231 1000Q4264 958 4265 878Q4265 835 4265 794.5Q4265 754 4265 712Q4264 655 4231 625.5Q4198 596 4134 596H4056Z M4617 1968 4826 368H5242L5451 1968H5186L5150 1601H4918L4882 1968ZM4942 1373H5126L5091 1021L5062 596H5006L4977 1021Z M5943 1986Q5744 1986 5659 1901Q5574 1816 5565 1619Q5564 1580 5564 1538Q5564 1496 5566 1454.5Q5568 1413 5572 1373H5815Q5811 1450 5810.5 1525.5Q5810 1601 5815 1666Q5820 1720 5850.5 1747.5Q5881 1775 5943 1775Q6004 1775 6032 1747.5Q6060 1720 6065 1666Q6069 1626 6070.5 1590Q6072 1554 6070.5 1517Q6069 1480 6065 1439Q6062 1389 6040.5 1351Q6019 1313 5969 1300L5820 1262Q5723 1237 5667 1189.5Q5611 1142 5586.5 1070Q5562 998 5559 900Q5558 851 5558 805.5Q5558 760 5559 715Q5564 584 5602.5 503.5Q5641 423 5723.5 386.5Q5806 350 5943 350Q6136 350 6222.5 434.5Q6309 519 6317 715Q6319 761 6318 828Q6317 895 6314 957H6066Q6069 885 6070 812.5Q6071 740 6068 668Q6066 615 6033.5 588Q6001 561 5943 561Q5881 561 5852 588Q5823 615 5817 668Q5812 726 5812 784Q5812 842 5817 900Q5822 952 5843.5 988Q5865 1024 5919 1037L6050 1068Q6153 1093 6212 1142.5Q6271 1192 6296.5 1266Q6322 1340 6325 1439Q6326 1472 6326 1501.5Q6326 1531 6325.5 1559.5Q6325 1588 6323 1619Q6315 1816 6229.5 1901Q6144 1986 5943 1986Z M6493 1968V368H6752V1968Z"/>
-              <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#eef2ff" stop-opacity=".62"/>
-                <stop offset=".38" stop-color="#eef2ff" stop-opacity=".16"/>
-                <stop offset=".7" stop-color="#eef2ff" stop-opacity=".03"/>
-                <stop offset="1" stop-color="#6f8fff" stop-opacity=".10"/>
-              </linearGradient>
-              <linearGradient id="edgeGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#ffffff" stop-opacity=".9"/>
-                <stop offset="1" stop-color="#ffffff" stop-opacity=".22"/>
-              </linearGradient>
-            </defs>
-            <g class="half half-l">
-              <g clip-path="url(#clipL)">
-                <image class="frost" href="assets/img/space/glass-1600.webp" x="0" y="0" width="1440" height="900" preserveAspectRatio="xMidYMid slice"/>
-                <image class="inside" href="assets/img/portrait/inside.webp" x="0" y="0" width="1440" height="900" preserveAspectRatio="xMidYMid meet"/>
-                <rect class="tint" x="-2000" y="-2000" width="8000" height="8000"/>
-                <use class="edge-in" href="#pathL"/>
-              </g>
-              <use class="edge" href="#pathL"/>
-            </g>
-            <g class="half half-r">
-              <g clip-path="url(#clipR)">
-                <image class="frost" href="assets/img/space/glass-1600.webp" x="0" y="0" width="1440" height="900" preserveAspectRatio="xMidYMid slice"/>
-                <image class="inside" href="assets/img/portrait/inside.webp" x="0" y="0" width="1440" height="900" preserveAspectRatio="xMidYMid meet"/>
-                <rect class="tint" x="-2000" y="-2000" width="8000" height="8000"/>
-                <use class="edge-in" href="#pathR"/>
-              </g>
-              <use class="edge" href="#pathR"/>
-            </g>
-          </svg>
-          <p class="surname" aria-hidden="true">Etim</p>
-
-          <div class="layer cut" aria-hidden="true">
-            <img data-src="assets/img/portrait/cutout-1200.webp" alt="" decoding="async">
-          </div>
-          <div class="layer near" aria-hidden="true">
-            <picture>
-              <source type="image/avif" srcset="assets/img/space/near-1600.avif 1600w, assets/img/space/near-2560.avif 2560w" sizes="100vw">
-              <img src="assets/img/space/near-1600.webp" alt="" decoding="async" loading="lazy">
-            </picture>
-          </div>
+          <div class="hero-grid" aria-hidden="true"></div>
+          <button class="hero-photo" type="button" aria-pressed="false" aria-label="Show Ini-abasi's portrait clearly">
+            <span class="ph-frame">
+              <img class="ph-soft" src="assets/img/portrait/hero-blur-1200.webp" alt="" width="864" height="1270" decoding="async" fetchpriority="high">
+              <img class="ph-sharp" data-src="assets/img/portrait/hero-sharp-864.webp" alt="" width="864" height="1270" decoding="async">
+            </span>
+            <span class="ph-hint" aria-hidden="true"><span class="h-touch">Tap</span><span class="h-mouse">Click</span> to focus</span>
+          </button>
+          <h1 class="hero-name"><span class="sr-only">Ini-abasi Etim, backend developer and accountant by training</span><span class="hn" aria-hidden="true"><span class="hn-l">Ini-abasi</span> <span class="hn-r">Etim</span></span></h1>
           <div class="scrim" aria-hidden="true"></div>
 
           <!-- hero bands -->
@@ -161,23 +92,10 @@
                 <a class="btn btn-ghost" href="#journey">See my journey</a>
               </div>
             </div>
-            <div class="b1-side">
-              <button class="mode-toggle" type="button" aria-pressed="false">
-                <span class="mt-label">Portrait</span>
-                <span class="mt-opt mt-window">Window</span>
-                <span class="mt-opt mt-stand">Stand out</span>
-              </button>
-              <ul class="proof" aria-label="Selected work">
-                <li><span class="pf-name">Oberon SHRM</span><span class="pf-meta">Antigravity</span></li>
-                <li><span class="pf-name">FINCON</span><span class="pf-meta">Unperplexed</span></li>
-                <li><span class="pf-name">GAM Staff Portal</span><span class="pf-meta">GAM</span></li>
-                <li><span class="pf-name">FINDATA</span><span class="pf-meta">138 companies</span></li>
-              </ul>
-            </div>
           </div>
           <div class="band b2" data-a="0.26" data-b="0.48">
             <div class="bk">
-              <p class="beat fx-part">Two sides of every entry.</p>
+              <p class="beat fx-part">Two sides of <span class="hl">every entry.</span></p>
               <p class="beat-sub">I read the books. I write the code.</p>
             </div>
           </div>
@@ -189,7 +107,7 @@
           </div>
           <div class="band b4" data-a="0.79" data-b="1">
             <div class="bk">
-              <p class="beat fx-rise">Ten organizations trusted me with their systems and their books.</p>
+              <p class="beat fx-rise">Ten organizations <span class="hl">trusted me</span> with their systems and their books.</p>
             </div>
           </div>
           <a class="skip-intro" href="#journey">Skip the intro</a>
@@ -199,21 +117,21 @@
         <div class="orgs" id="organizations-scene">
           <div class="orgs-head">
             <p class="kicker">01 · Organizations</p>
-            <h2>Ten organizations. One route.</h2>
+            <h2>Ten organizations. <span class="hl">One route.</span></h2>
             <p>Paid roles, volunteer work and freelance projects. Every one is labeled honestly on the map.</p>
           </div>
           <svg class="orgs-lines" aria-hidden="true" focusable="false"><path class="ol-path"/></svg>
           <ol class="orgs-list">
-            <li class="org" style="--x:14;--y:74"><span class="org-star" aria-hidden="true"></span><span class="org-chip"><img src="assets/img/logos/purplegirls.webp" alt="" width="160" height="64" loading="lazy"></span><span class="org-name">FYA Purple Girls</span><span class="org-meta">2024 · Freelance project</span></li>
-            <li class="org" style="--x:30;--y:62"><span class="org-star" aria-hidden="true"></span><span class="org-chip"><img src="assets/img/logos/antigravity.webp" alt="" width="160" height="64" loading="lazy"></span><span class="org-name">Antigravity Group</span><span class="org-meta">2024 to 2025 · Paid</span></li>
-            <li class="org" style="--x:46;--y:50"><span class="org-star" aria-hidden="true"></span><span class="org-chip"><img src="assets/img/logos/gamaid-wordmark.webp" alt="" width="160" height="64" loading="lazy"></span><span class="org-name">GAMAID Foundation</span><span class="org-meta">2025 to now · Volunteer</span></li>
-            <li class="org" style="--x:58;--y:36"><span class="org-star" aria-hidden="true"></span><span class="org-chip"><img src="assets/img/logos/gam.webp" alt="" width="160" height="64" loading="lazy"></span><span class="org-name">GAM</span><span class="org-meta">2025 to now · Volunteer</span></li>
-            <li class="org" style="--x:72;--y:24"><span class="org-star" aria-hidden="true"></span><span class="org-chip"><img src="assets/img/logos/unperplexed.webp" alt="" width="160" height="64" loading="lazy"></span><span class="org-name">Unperplexed Consulting</span><span class="org-meta">2025 to now · Volunteer</span></li>
-            <li class="org" style="--x:86;--y:36"><span class="org-star" aria-hidden="true"></span><span class="org-chip"><img src="assets/img/logos/ucdigital.webp" alt="" width="160" height="64" loading="lazy"></span><span class="org-name">UC Digital Services</span><span class="org-meta">2026 · Freelance project</span></li>
-            <li class="org" style="--x:80;--y:56"><span class="org-star" aria-hidden="true"></span><span class="org-chip"><img src="assets/img/logos/panfinance.webp" alt="" width="160" height="64" loading="lazy"></span><span class="org-name">Pan Finance</span><span class="org-meta">2026 to now · Paid</span></li>
-            <li class="org" style="--x:66;--y:68"><span class="org-star" aria-hidden="true"></span><span class="org-chip"><img src="assets/img/logos/nytc.webp" alt="" width="160" height="64" loading="lazy"></span><span class="org-name">NYTC</span><span class="org-meta">2026 · Accounting</span></li>
-            <li class="org" style="--x:50;--y:78"><span class="org-star" aria-hidden="true"></span><span class="org-chip"><img src="assets/img/logos/gamaid.webp" alt="" width="160" height="64" loading="lazy"></span><span class="org-name">GAMAID Kitchen</span><span class="org-meta">2026 · Accounting</span></li>
-            <li class="org" style="--x:34;--y:86"><span class="org-star" aria-hidden="true"></span><span class="org-chip"><img src="assets/img/logos/imotex.webp" alt="" width="160" height="64" loading="lazy"></span><span class="org-name">Imotex Gas</span><span class="org-meta">2026 · Accounting</span></li>
+            <li class="org" style="--x:14;--y:74"><button class="org-btn" type="button" data-stop="stop-purplegirls" aria-haspopup="dialog"><span class="org-star" aria-hidden="true"></span><span class="org-chip"><img src="assets/img/logos/purplegirls.webp" alt="" width="160" height="64" loading="lazy"></span><span class="org-name">FYA Purple Girls</span><span class="org-meta">2024 · Freelance project</span><span class="org-go" aria-hidden="true"></span><span class="sr-only">: see what I did</span></button></li>
+            <li class="org" style="--x:30;--y:62"><button class="org-btn" type="button" data-stop="stop-antigravity" aria-haspopup="dialog"><span class="org-star" aria-hidden="true"></span><span class="org-chip"><img src="assets/img/logos/antigravity.webp" alt="" width="160" height="64" loading="lazy"></span><span class="org-name">Antigravity Group</span><span class="org-meta">2024 to 2025 · Paid</span><span class="org-go" aria-hidden="true"></span><span class="sr-only">: see what I did</span></button></li>
+            <li class="org" style="--x:46;--y:50"><button class="org-btn" type="button" data-stop="stop-gamaid" aria-haspopup="dialog"><span class="org-star" aria-hidden="true"></span><span class="org-chip"><img src="assets/img/logos/gamaid-wordmark.webp" alt="" width="160" height="64" loading="lazy"></span><span class="org-name">GAMAID Foundation</span><span class="org-meta">2025 to now · Volunteer</span><span class="org-go" aria-hidden="true"></span><span class="sr-only">: see what I did</span></button></li>
+            <li class="org" style="--x:58;--y:36"><button class="org-btn" type="button" data-stop="stop-gam" aria-haspopup="dialog"><span class="org-star" aria-hidden="true"></span><span class="org-chip"><img src="assets/img/logos/gam.webp" alt="" width="160" height="64" loading="lazy"></span><span class="org-name">GAM</span><span class="org-meta">2025 to now · Volunteer</span><span class="org-go" aria-hidden="true"></span><span class="sr-only">: see what I did</span></button></li>
+            <li class="org" style="--x:72;--y:24"><button class="org-btn" type="button" data-stop="stop-unperplexed" aria-haspopup="dialog"><span class="org-star" aria-hidden="true"></span><span class="org-chip"><img src="assets/img/logos/unperplexed.webp" alt="" width="160" height="64" loading="lazy"></span><span class="org-name">Unperplexed Consulting</span><span class="org-meta">2025 to now · Volunteer</span><span class="org-go" aria-hidden="true"></span><span class="sr-only">: see what I did</span></button></li>
+            <li class="org" style="--x:86;--y:36"><button class="org-btn" type="button" data-stop="stop-ucdigital" aria-haspopup="dialog"><span class="org-star" aria-hidden="true"></span><span class="org-chip"><img src="assets/img/logos/ucdigital.webp" alt="" width="160" height="64" loading="lazy"></span><span class="org-name">UC Digital Services</span><span class="org-meta">2026 · Freelance project</span><span class="org-go" aria-hidden="true"></span><span class="sr-only">: see what I did</span></button></li>
+            <li class="org" style="--x:80;--y:56"><button class="org-btn" type="button" data-stop="stop-panfinance" aria-haspopup="dialog"><span class="org-star" aria-hidden="true"></span><span class="org-chip"><img src="assets/img/logos/panfinance.webp" alt="" width="160" height="64" loading="lazy"></span><span class="org-name">Pan Finance</span><span class="org-meta">2026 to now · Paid</span><span class="org-go" aria-hidden="true"></span><span class="sr-only">: see what I did</span></button></li>
+            <li class="org" style="--x:66;--y:68"><button class="org-btn" type="button" data-stop="stop-nytc" aria-haspopup="dialog"><span class="org-star" aria-hidden="true"></span><span class="org-chip"><img src="assets/img/logos/nytc.webp" alt="" width="160" height="64" loading="lazy"></span><span class="org-name">NYTC</span><span class="org-meta">2026 · Accounting</span><span class="org-go" aria-hidden="true"></span><span class="sr-only">: see what I did</span></button></li>
+            <li class="org" style="--x:50;--y:78"><button class="org-btn" type="button" data-stop="stop-gamaidkitchen" aria-haspopup="dialog"><span class="org-star" aria-hidden="true"></span><span class="org-chip"><img src="assets/img/logos/gamaid.webp" alt="" width="160" height="64" loading="lazy"></span><span class="org-name">GAMAID Kitchen</span><span class="org-meta">2026 · Accounting</span><span class="org-go" aria-hidden="true"></span><span class="sr-only">: see what I did</span></button></li>
+            <li class="org" style="--x:34;--y:86"><button class="org-btn" type="button" data-stop="stop-imotex" aria-haspopup="dialog"><span class="org-star" aria-hidden="true"></span><span class="org-chip"><img src="assets/img/logos/imotex.webp" alt="" width="160" height="64" loading="lazy"></span><span class="org-name">Imotex Gas</span><span class="org-meta">2026 · Accounting</span><span class="org-go" aria-hidden="true"></span><span class="sr-only">: see what I did</span></button></li>
           </ol>
         </div>
       </div>
@@ -226,7 +144,7 @@
         <div class="j-head">
           <div>
             <p class="kicker">02 · Journey</p>
-            <h2 id="journey-title">The route so far.</h2>
+            <h2 id="journey-title">The route <span class="hl">so far.</span></h2>
             <p class="j-tabline">The supporting track. Same discipline, different ledger.</p>
           </div>
           <div class="j-tools">
@@ -247,13 +165,13 @@
         <div class="j-map" aria-hidden="true">
           <div class="j-par j-par--a"></div>
           <div class="j-par j-par--b"></div>
-          <div class="j-track"><svg class="j-svg" focusable="false"></svg><div class="j-nodes"></div></div>
+          <div class="j-track"><div class="j-reveal"><div class="j-reveal-in"><svg class="j-svg" focusable="false"></svg></div></div><div class="j-nodes"></div></div>
           <div class="j-focus"></div>
         </div>
 
         <div class="track" id="track-dev" role="tabpanel" aria-labelledby="tab-dev" data-track="dev" data-width="3.9">
           <ol class="stops">
-            <li class="stop" data-x="0.07" data-kind="free" data-label="2024" data-short="Purple Girls">
+            <li class="stop" id="stop-purplegirls" data-x="0.07" data-kind="free" data-label="2024" data-short="Purple Girls">
               <article class="card">
                 <div class="card-id">
                   <span class="card-logo"><img src="assets/img/logos/purplegirls.webp" alt="FYA Purple Girls logo" width="160" height="64" loading="lazy"></span>
@@ -268,7 +186,7 @@
                 </div>
               </article>
             </li>
-            <li class="stop" data-x="0.16" data-kind="way" data-label="2024" data-short="Graduated">
+            <li class="stop" id="stop-graduated" data-x="0.16" data-kind="way" data-label="2024" data-short="Graduated">
               <article class="card card-way">
                 <div class="card-id">
                   <p class="when">Waypoint · 2024</p>
@@ -280,7 +198,7 @@
                 </div>
               </article>
             </li>
-            <li class="stop" data-x="0.26" data-kind="paid" data-label="Sep 2024" data-short="Antigravity" data-end="0.35">
+            <li class="stop" id="stop-antigravity" data-x="0.26" data-kind="paid" data-label="Sep 2024" data-short="Antigravity" data-end="0.35">
               <article class="card">
                 <div class="card-id">
                   <span class="card-logo"><img src="assets/img/logos/antigravity.webp" alt="Antigravity Group logo" width="160" height="64" loading="lazy"></span>
@@ -301,7 +219,7 @@
                 </div>
               </article>
             </li>
-            <li class="stop" data-x="0.40" data-kind="vol" data-lane="1" data-label="Late 2025" data-short="GAMAID">
+            <li class="stop" id="stop-gamaid" data-x="0.40" data-kind="vol" data-lane="1" data-label="Late 2025" data-short="GAMAID">
               <article class="card">
                 <div class="card-id">
                   <span class="card-logo"><img src="assets/img/logos/gamaid-wordmark.webp" alt="GAMAID Foundation logo" width="160" height="64" loading="lazy"></span>
@@ -316,7 +234,7 @@
                 </div>
               </article>
             </li>
-            <li class="stop" data-x="0.50" data-kind="vol" data-lane="2" data-label="Late 2025" data-short="GAM">
+            <li class="stop" id="stop-gam" data-x="0.50" data-kind="vol" data-lane="2" data-label="Late 2025" data-short="GAM">
               <article class="card">
                 <div class="card-id">
                   <span class="card-logo"><img src="assets/img/logos/gam.webp" alt="GAM crest" width="160" height="64" loading="lazy"></span>
@@ -332,7 +250,7 @@
                 </div>
               </article>
             </li>
-            <li class="stop" data-x="0.60" data-kind="vol" data-lane="3" data-label="Late 2025" data-short="Unperplexed">
+            <li class="stop" id="stop-unperplexed" data-x="0.60" data-kind="vol" data-lane="3" data-label="Late 2025" data-short="Unperplexed">
               <article class="card">
                 <div class="card-id">
                   <span class="card-logo"><img src="assets/img/logos/unperplexed.webp" alt="Unperplexed Consulting logo" width="160" height="64" loading="lazy"></span>
@@ -347,7 +265,7 @@
                 </div>
               </article>
             </li>
-            <li class="stop" data-x="0.70" data-kind="free" data-label="Early 2026" data-short="UC Digital">
+            <li class="stop" id="stop-ucdigital" data-x="0.70" data-kind="free" data-label="Early 2026" data-short="UC Digital">
               <article class="card">
                 <div class="card-id">
                   <span class="card-logo"><img src="assets/img/logos/ucdigital.webp" alt="UC Digital Services logo" width="160" height="64" loading="lazy"></span>
@@ -361,7 +279,7 @@
                 </div>
               </article>
             </li>
-            <li class="stop" data-x="0.80" data-kind="paid" data-label="Jan 2026" data-short="Pan Finance">
+            <li class="stop" id="stop-panfinance" data-x="0.80" data-kind="paid" data-label="Jan 2026" data-short="Pan Finance">
               <article class="card">
                 <div class="card-id">
                   <span class="card-logo"><img src="assets/img/logos/panfinance.webp" alt="Pan Finance logo" width="160" height="64" loading="lazy"></span>
@@ -380,7 +298,7 @@
                 </div>
               </article>
             </li>
-            <li class="stop" data-x="0.90" data-kind="own" data-label="Personal" data-short="FINDATA">
+            <li class="stop" id="stop-findata" data-x="0.90" data-kind="own" data-label="Personal" data-short="FINDATA">
               <article class="card">
                 <div class="card-id">
                   <span class="card-logo"><img src="assets/img/logos/findata.webp" alt="FINDATA logo" width="160" height="64" loading="lazy"></span>
@@ -401,31 +319,31 @@
         <div class="track" id="track-acc" role="tabpanel" aria-labelledby="tab-acc" data-track="acc" data-width="2.6" hidden>
           <p class="track-line">The supporting track. Same discipline, different ledger.</p>
           <ol class="stops">
-            <li class="stop" data-x="0.10" data-kind="way" data-label="2019 to 2024" data-short="BSc Accounting">
+            <li class="stop" id="stop-bsc" data-x="0.10" data-kind="way" data-label="2019 to 2024" data-short="BSc Accounting">
               <article class="card card-way">
                 <div class="card-id"><p class="when">2019 to 2024</p><h3>University of Uyo</h3><p class="tags"><span class="basis b-way">Degree</span></p></div>
                 <div class="card-body"><ul class="parts"><li>BSc Accounting, University of Uyo.</li></ul></div>
               </article>
             </li>
-            <li class="stop" data-x="0.30" data-kind="bridge" data-label="Bridge" data-short="Payroll tax">
+            <li class="stop" id="stop-bridge" data-x="0.30" data-kind="bridge" data-label="Bridge" data-short="Payroll tax">
               <article class="card">
                 <div class="card-id"><span class="card-logo"><img src="assets/img/logos/oberon.webp" alt="Oberon SHRM logo" width="160" height="64" loading="lazy"></span><p class="when">Bridge · Sep 2024 to Sep 2025</p><h3>Antigravity Group</h3><p class="tags"><span class="basis b-bridge">Both tracks</span></p></div>
                 <div class="card-body"><ul class="parts"><li>Payroll tax compliance on Oberon SHRM at Antigravity.</li></ul></div>
               </article>
             </li>
-            <li class="stop" data-x="0.50" data-kind="ledger" data-label="2026" data-short="NYTC">
+            <li class="stop" id="stop-nytc" data-x="0.50" data-kind="ledger" data-label="2026" data-short="NYTC">
               <article class="card">
                 <div class="card-id"><span class="card-logo"><img src="assets/img/logos/nytc.webp" alt="NYTC logo" width="160" height="64" loading="lazy"></span><p class="when">2026</p><h3>NYTC</h3><p class="tags"><span class="basis b-ledger">Accounting</span><span class="role">Tax</span></p></div>
                 <div class="card-body"><ul class="parts"><li>Prepared the 2025 tax report and the tax assessment.</li></ul></div>
               </article>
             </li>
-            <li class="stop" data-x="0.70" data-kind="ledger" data-label="2026" data-short="GAMAID Kitchen">
+            <li class="stop" id="stop-gamaidkitchen" data-x="0.70" data-kind="ledger" data-label="2026" data-short="GAMAID Kitchen">
               <article class="card">
                 <div class="card-id"><span class="card-logo"><img src="assets/img/logos/gamaid.webp" alt="GAMAID emblem" width="160" height="64" loading="lazy"></span><p class="when">2026</p><h3>GAMAID Kitchen</h3><p class="tags"><span class="basis b-ledger">Accounting</span><span class="role">Reporting</span></p></div>
                 <div class="card-body"><ul class="parts"><li>Built operational reports so management can see the profit and loss lines.</li></ul></div>
               </article>
             </li>
-            <li class="stop" data-x="0.90" data-kind="ledger" data-label="2026" data-short="Imotex Gas">
+            <li class="stop" id="stop-imotex" data-x="0.90" data-kind="ledger" data-label="2026" data-short="Imotex Gas">
               <article class="card">
                 <div class="card-id"><span class="card-logo"><img src="assets/img/logos/imotex.webp" alt="Imotex Gas emblem" width="160" height="64" loading="lazy"></span><p class="when">2026</p><h3>Imotex Gas</h3><p class="tags"><span class="basis b-ledger">Accounting</span><span class="role">Records and advice</span></p></div>
                 <div class="card-body"><ul class="parts"><li>Set up stock-taking and sales and purchases records, estimated profit, and advised on credit options.</li></ul></div>
@@ -446,7 +364,7 @@
         </figure>
         <div class="about-copy">
           <p class="kicker reveal">03 · About</p>
-          <h2 id="about-title" class="reveal">An accountant who builds the backend.</h2>
+          <h2 id="about-title" class="reveal">An accountant who <span class="hl">builds the backend.</span></h2>
           <p class="reveal">I studied accounting at the University of Uyo and was writing backend code before I graduated. The two never stayed apart for long.</p>
           <p class="reveal">At Antigravity I built payroll features that follow Nigeria's tax rules. Today I lead development at Pan Finance, and I volunteer as lead developer on the systems that run GAMAID's books, staff and aid.</p>
           <p class="reveal">When I build a system that moves money or people records, I know what the numbers should say at the end of the month.</p>
@@ -495,7 +413,7 @@
       <div class="stage tools-stage">
         <div class="tools-head">
           <p class="kicker">04 · Tools</p>
-          <h2 id="tools-title">The stack I ship with.</h2>
+          <h2 id="tools-title">The stack I <span class="hl">ship with.</span></h2>
           <p>Backend first. Tested before it ships.</p>
         </div>
         <div class="stack">
@@ -518,7 +436,7 @@
     <section class="projects" id="projects" aria-labelledby="projects-title">
       <div class="wrap">
         <p class="kicker reveal">05 · Projects</p>
-        <h2 id="projects-title" class="reveal">My own builds.</h2>
+        <h2 id="projects-title" class="reveal">My own <span class="hl">builds.</span></h2>
         <article class="feature reveal">
           <div class="feature-id">
             <span class="card-logo"><img src="assets/img/logos/findata.webp" alt="FINDATA logo" width="160" height="64" loading="lazy"></span>
@@ -534,13 +452,6 @@
             <div><dt>statement snips</dt><dd data-count="18190">18,190</dd></div>
           </dl>
         </article>
-        <ul class="rail">
-          <li class="reveal"><a class="rail-card" href="proj1.html"><span class="basis b-own">REST API</span><h3>BitByBit</h3><p>A REST API that emailed students a daily study summary during the 2022 ASUU strike.</p></a></li>
-          <li class="reveal"><a class="rail-card" href="zuvote.html"><span class="basis b-own">Web app</span><h3>Zuvote</h3><p>Paid voting for pageants, with every vote counted for the right contestant.</p></a></li>
-          <li class="reveal"><a class="rail-card" href="inventory.html"><span class="basis b-own">Web app</span><h3>Inventory manager</h3><p>Stock records with FIFO and LIFO, inspired by a cost accounting textbook.</p></a></li>
-          <li class="reveal"><a class="rail-card" href="ese.html"><span class="basis b-own">Web app</span><h3>Writing agency</h3><p>A brand site and blog for a writing agency.</p></a></li>
-          <li class="reveal"><a class="rail-card" href="note.html"><span class="basis b-own">REST API</span><h3>Note API</h3><p>A small API for taking short notes.</p></a></li>
-        </ul>
 
         <div class="plaques">
           <h3 class="kicker reveal">Education &amp; certification</h3>
@@ -559,7 +470,7 @@
       <div class="wrap contact-grid">
         <div class="contact-main">
           <p class="kicker reveal">Next stop</p>
-          <h2 id="contact-title" class="reveal">Your team could be the next stop.</h2>
+          <h2 id="contact-title" class="reveal">Your team could be <span class="hl">the next stop.</span></h2>
           <p class="email reveal"><a href="mailto:ini.abasidev@gmail.com">ini.abasidev@gmail.com</a></p>
           <p class="reveal"><button class="btn btn-ghost copy-email" type="button" data-copy="ini.abasidev@gmail.com">Copy email</button> <span class="copy-status" aria-live="polite"></span></p>
           <p class="promise reveal">I reply within 24 hours.</p>
@@ -586,6 +497,16 @@
     </section>
   </main>
 
+  <dialog class="org-dialog" id="org-dialog" aria-label="What I did">
+    <div class="od-inner">
+      <button class="od-close" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <div class="od-body"></div>
+      <div class="od-foot"><button class="btn btn-ghost od-route" type="button">See it on the route <span aria-hidden="true">&rarr;</span></button></div>
+    </div>
+  </dialog>
+
   <footer class="footer">
     <div class="wrap footer-grid">
       <a class="mark" href="#main" aria-label="INIT, back to the top">
@@ -594,7 +515,7 @@
       </a>
       <p>© <span data-year>2026</span> Ini-abasi Etim · Uyo, Nigeria</p>
       <p>Designed and built by INIT.</p>
-      <p class="credit">Pismis 24 image: <a href="https://esawebb.org/images/weic2518a/" target="_blank" rel="noopener">NASA, ESA, CSA, and STScI, A. Pagan (STScI)</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>, layered and cropped for this site.</p>
+      <p class="credit">Link preview image: Pismis 24, <a href="https://esawebb.org/images/weic2518a/" target="_blank" rel="noopener">NASA, ESA, CSA, and STScI, A. Pagan (STScI)</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>, cropped.</p>
     </div>
   </footer>
 </body>

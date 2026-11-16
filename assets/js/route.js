@@ -8,8 +8,10 @@
   if (!sec) return;
   var stageEl = sec.querySelector(".j-stage");
   var map = sec.querySelector(".j-map");
+  var headEl = sec.querySelector(".j-head");
   var trackEl = sec.querySelector(".j-track");
   var svg = sec.querySelector(".j-svg");
+  var reveal = sec.querySelector(".j-reveal"), revealIn = sec.querySelector(".j-reveal-in");
   var nodesEl = sec.querySelector(".j-nodes");
   var parA = sec.querySelector(".j-par--a"), parB = sec.querySelector(".j-par--b");
   var countN = sec.querySelector(".j-count-n"), countT = sec.querySelector(".j-count-t");
@@ -43,10 +45,7 @@
     svg.setAttribute("viewBox", "0 0 " + TW.toFixed(0) + " " + H.toFixed(0));
     trackEl.style.width = TW.toFixed(0) + "px";
     var X = function (f) { return f * TW; };
-    var g = el("g", { "clip-path": "url(#jclip)" }, svg);
-    var defs = el("defs", {}, svg);
-    var cp = el("clipPath", { id: "jclip" }, defs);
-    L.clipRect = el("rect", { x: 0, y: 0, width: 0, height: H }, cp);
+    var g = el("g", {}, svg);
     var my = L.mainY;
 
     if (cur.id === "dev") {
@@ -70,8 +69,8 @@
       stops.filter(function (s) { return s.kind === "free" || s.kind === "own"; }).forEach(function (s) {
         el("path", { class: "rt " + (s.kind === "free" ? "rt-free" : "rt-own"), d: "M" + X(s.x) + " " + my + " V" + L.upY }, g);
       });
-      el("path", { class: "rt rt-now", d: "M" + nowX + " " + (L.upY - 20) + " V" + (L.lanes[2] + 20) }, g);
-      addNode({ kind: "now", x: .975, label: "Now", short: "" }, nowX, L.upY - 30, true);
+      el("path", { class: "rt rt-now", d: "M" + nowX + " " + (L.upY - 4) + " V" + (L.lanes[2] + 20) }, g);
+      addNode({ kind: "now", x: .975, label: "Now", short: "" }, nowX, L.upY - 4, true);
     } else {
       el("path", { class: "rt rt-ledger", d: "M" + X(.03) + " " + my + " H" + X(.97) }, g);
     }
@@ -108,10 +107,17 @@
     L.TW = L.W * cur.widthMul;
     var first = cur.stops[0].x, last = cur.stops[cur.stops.length - 1].x;
     L.x0 = first; L.x1 = last;
-    L.mainY = L.H * .38; L.upY = L.H * .29;
-    L.lanes = [L.H * .44, L.H * .485, L.H * .53];
+    /* the map lives in the band between the header and the cards, measured, so nothing crowds the header */
+    var st = stageEl.getBoundingClientRect().top;
+    var hb = headEl.getBoundingClientRect().bottom - st;
+    var tt = cur.panel.getBoundingClientRect().top - st;
+    var A = Math.max(220, tt - hb);
+    L.upY = hb + Math.max(58, A * .22); L.mainY = Math.max(L.upY + 40, hb + A * .43);   /* up-labels need ~50px above their stop */
+    L.lanes = [L.mainY + A * .18, L.mainY + A * .27, L.mainY + A * .36];
     var cnt = sec.querySelector(".j-count");
-    if (cnt) cnt.style.setProperty("--jc-top", (L.lanes[2] + 30).toFixed(0) + "px");
+    if (cnt) cnt.style.setProperty("--jc-top", Math.min(L.lanes[2] + A * .1, tt - 22).toFixed(0) + "px");
+    map.style.setProperty("--jf-top", (L.upY - 30).toFixed(0) + "px");
+    map.style.setProperty("--jf-h", (L.lanes[2] + 20 - (L.upY - 30)).toFixed(0) + "px");
     build();
     active = -1;
   }
@@ -122,9 +128,12 @@
     var focusF = L.x0 + (L.x1 - L.x0) * p;           /* track fraction under the centre line */
     var tx = W / 2 - focusF * TW;
     I.setStyle(trackEl, "transform", "translate3d(" + tx.toFixed(1) + "px,0,0)");
-    I.setStyle(parA, "transform", "translate3d(" + ((tx * .12) % 380).toFixed(1) + "px,0,0)");
-    I.setStyle(parB, "transform", "translate3d(" + ((tx * .26) % 520).toFixed(1) + "px,0,0)");
-    if (L.clipRect) I.setAttr(L.clipRect, "width", Math.max(0, focusF * TW + W * .38).toFixed(0));
+    I.setStyle(parA, "transform", "translate3d(" + ((tx * .12) % 56).toFixed(1) + "px,0,0)");
+    I.setStyle(parB, "transform", "translate3d(" + ((tx * .26) % 168).toFixed(1) + "px,0,0)");
+    /* the drawn part of the route ends a little ahead of the centre line */
+    var hide = I.clamp(TW - (focusF * TW + W * .38), 0, TW);
+    I.setStyle(reveal, "transform", "translate3d(" + (-hide).toFixed(1) + "px,0,0)");
+    I.setStyle(revealIn, "transform", "translate3d(" + hide.toFixed(1) + "px,0,0)");
 
     /* the active stop is the one nearest the centre line, with a little hysteresis */
     var fx = focusF * TW, best = active, bd = 1e9;
@@ -145,7 +154,7 @@
   var scene = I.scene({
     el: sec, layout: layout, render: render, lerp: .16,
     clear: function () {
-      [trackEl, parA, parB].forEach(I.clearEl);
+      [trackEl, parA, parB, reveal, revealIn].forEach(I.clearEl);
       cur.stops.forEach(function (s) { s.li.classList.remove("on"); });
       active = -1;
     }
@@ -161,6 +170,22 @@
     var p = (s.x - L.x0) / ((L.x1 - L.x0) || 1);
     I.scrollToProgress(scene, I.clamp(p, 0, 1));
   });
+
+  /* ---------- fly to one stop (the organizations dialog uses this) ---------- */
+  function goTo(stopId) {
+    var li = document.getElementById(stopId);
+    if (!li) return;
+    var panel = li.closest('[role="tabpanel"]');
+    var tab = tabs.filter(function (t) { return t.getAttribute("aria-controls") === panel.id; })[0];
+    if (tab && tab.getAttribute("aria-selected") !== "true") select(tab);
+    var h = li.querySelector("h3");
+    if (h) { h.tabIndex = -1; h.focus({ preventScroll: true }); }
+    if (!I.scrub) { li.scrollIntoView({ behavior: I.reduce ? "auto" : "smooth", block: "start" }); return; }
+    var s = cur.stops.filter(function (x) { return x.li === li; })[0];
+    if (!s) return;
+    I.scrollToProgress(scene, I.clamp((s.x - L.x0) / ((L.x1 - L.x0) || 1), 0, 1));
+  }
+  I.route = { goTo: goTo };
 
   /* ---------- tabs ---------- */
   function select(tab, focus) {
