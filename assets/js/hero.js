@@ -142,6 +142,12 @@
     if (sharpImg.complete && sharpImg.naturalWidth) setClear(true);
     else sharpImg.addEventListener("load", function () { setClear(true); }, { once: true });
   });
+  /* the phone hint above the copy is a shortcut to the same toggle */
+  var hintM = world.querySelector(".ph-hint-m"), hintMText = hintM && hintM.querySelector(".phm-text");
+  if (hintM) hintM.addEventListener("click", function () { photo.click(); });
+  new MutationObserver(function () {
+    if (hintMText) hintMText.textContent = photo.classList.contains("is-clear") ? "Tap photo to soften" : "Tap photo to focus";
+  }).observe(photo, { attributes: true, attributeFilter: ["class"] });
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && photo.classList.contains("is-clear") && !document.querySelector("dialog[open]")) setClear(false);
   });
