@@ -149,6 +149,10 @@ h2 { font: 800 clamp(40px, 6vw, 84px)/.95 var(--f-display); letter-spacing: .005
 .ph-hint::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 .hero-photo.is-clear .ph-hint { opacity: 0; }
 .h-mouse { display: none; }
+/* phones: the hint lives above the copy, so it never sits on the face */
+.ph-hint-m { display: none; align-self: flex-end; margin: 0 0 18px auto; position: relative; left: auto; bottom: auto; transform: none; pointer-events: auto; cursor: pointer; }
+.b1-copy { display: flex; flex-direction: column; }
+.b1-copy .lede, .b1-copy .cta-row { align-self: stretch; }
 @media (hover: hover) and (pointer: fine) { .h-touch { display: none; } .h-mouse { display: inline; } }
 /* the name, full and white */
 .hero-name { position: absolute; z-index: 5; left: 0; right: 0; top: 44%; transform: translateY(-50%); margin: 0; text-align: center; color: #fff; font: 800 clamp(64px, 10vw, 200px)/.84 var(--f-display); letter-spacing: .012em; text-transform: uppercase; white-space: nowrap; pointer-events: none; text-shadow: 0 2px 24px rgba(7, 13, 31, .35); }
@@ -249,15 +253,15 @@ html:not(.scrub) .skip-intro { display: none; }
   .hero-name { top: 30%; }
   .hero-photo { top: calc(30% + 7vw); bottom: 250px; height: auto; }
 }
-/* phones: the name stacks on two lines, the photo sits behind it, the copy at the thumb */
+/* phones: the name stacks on two lines in the middle, the portrait fills the lower-right half behind everything */
 @media (max-width: 720px) {
   .hero-frame { min-height: 620px; }
-  .hero-name { top: calc(var(--nav-h) + 2.5svh); transform: none; font-size: clamp(56px, 21vw, 150px); line-height: .84; white-space: normal; }
+  .hero-name { top: 40%; transform: translateY(-50%); font-size: clamp(56px, 21vw, 150px); line-height: .84; white-space: normal; }
   .hn-l, .hn-r { display: block; }
-  /* the portrait sits to the right, in the gap between the name and the copy */
-  .hero-photo { top: calc(var(--nav-h) + 2.5svh + 1.68 * min(21vw, 150px) + 10px); bottom: 290px; height: auto; }
-  .ph-soft { opacity: .5; }
-  .ph-hint { bottom: 8%; left: auto; right: 0; transform: none; }
+  .hero-photo { z-index: 2; top: auto; bottom: 0; right: -18%; height: 68%; }
+  .ph-soft { opacity: .42; }
+  .ph-hint { display: none; }
+  .ph-hint-m { display: inline-flex; }
   .scrim { background: linear-gradient(180deg, rgba(10, 21, 48, .55) 0, rgba(10, 21, 48, 0) 14%, rgba(10, 21, 48, 0) 40%, rgba(10, 21, 48, .82) 66%, var(--canvas-2) 92%); }
   .lede { font-size: 16px; margin-bottom: 18px; }
   .lede strong { font-size: 22px; }
